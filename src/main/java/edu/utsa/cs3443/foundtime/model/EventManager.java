@@ -42,6 +42,9 @@ public class EventManager {
 
     //TODO: This is gonna save to the events file??
     public void saveAllEvents(){
+        /*I actually don't know how this would work since we only grabbed the users
+          events, so we can't overwrite the current events file without the others events?
+        */
         //Should call the eventToLine method
     }
 
