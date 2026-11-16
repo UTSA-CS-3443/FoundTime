@@ -6,9 +6,58 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.utsa.cs3443.foundtime.WeekScreenController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.utsa.cs3443.foundtime.WeekScreenController"
+            prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFF8EF;">
+
+    <!-- The same as the main/month screen, but idk if we should do something else...-->
+    <HBox alignment="CENTER" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <GridPane fx:id="calendarGrid" gridLinesVisible="true" maxWidth="1000" maxHeight="1000" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="0.0" right="20.0" bottom="20.0" left="20.0" />
+            </padding>
+
+            <!-- 7 Equal Columns for Days of the Week -->
+            <columnConstraints >
+                <ColumnConstraints percentWidth="20" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="20" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="20" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="20" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="20" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="20" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="20" hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <!-- Row 0: Fixed height for Day Headers; Rows 1-6: Equal height for Weeks -->
+            <rowConstraints>
+                <RowConstraints prefHeight="35.0" minHeight="35.0" maxHeight="35.0" vgrow="NEVER" />
+                <RowConstraints minHeight="35.0" maxHeight="35.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="35.0" maxHeight="35.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="35.0" maxHeight="35.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="35.0" maxHeight="35.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="35.0" maxHeight="35.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="35.0" maxHeight="35.0" vgrow="ALWAYS" />
+            </rowConstraints>
+
+            <!-- Day-of-Week Header Labels (Row 0) -->
+            <children>
+                <!--Row 1-->
+                <Label text="Sun" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text="Mon" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text="Tue" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text="Wed" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text="Thu" GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text="Fri" GridPane.columnIndex="5" GridPane.rowIndex="0" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text="Sat" GridPane.columnIndex="6" GridPane.rowIndex="0" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+            </children>
+            <children>
+                <Label text=" " GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text=" " GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text=" " GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text=" " GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+                <Label text=" " GridPane.columnIndex="4" GridPane.rowIndex="5" GridPane.halignment="CENTER" style="-fx-font-weight: bold;" />
+            </children>
+        </GridPane>
+    </HBox>
 
 </AnchorPane>
