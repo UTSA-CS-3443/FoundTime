@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.utsa.cs3443.foundtime.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFF8EF;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.foundtime.LoginController">
+    <padding>
+        <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
 
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" stylesheets="@styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <Label fx:id="titleLabel" text="FoundTime" textFill="#383838">
+            <font>
+                <Font name="HeadlandOne" size="40.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" stylesheets="@styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <Label fx:id="loginLabel" text="Login" textFill="#383838">
+            <font>
+                <Font name="HeadlandOne" size="20.0" />
+            </font>
+        </Label>
+    </HBox>
+
+
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="142.0">
+        <Label fx:id="userLabel" text="Username">
+            <font>
+                <Font name="HeadlandOne" size="12.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
+        <TextField fx:id="username" prefWidth="200.0" />
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="202.0">
+        <Label fx:id="passLabel" text="Password">
+            <font>
+                <Font name="HeadlandOne" size="12.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+        <PasswordField fx:id="password" prefWidth="200.0" />
+    </HBox>
+
+
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="265.0">
+        <Button onAction="#handleLoginButton" prefWidth="100.0" text="Login" style="-fx-background-color: #FFB3D4;-fx-background-radius: 15px;">
+         <font>
+            <Font name="HeadlandOne-Regular" size="14.0" />
+         </font>
+        </Button>
+    </HBox>
+
+
+    <HBox alignment="CENTER" spacing="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="345.0">
+        <Label text="Don't have an account?" >
+            <font>
+                <Font name="HeadlandOne-Regular" size="11.0"/>
+            </font>
+        </Label>
+        <Hyperlink onAction="#handleSignUp" text="Sign up" >
+            <font>
+                <Font name="HeadlandOne-Regular" size="11.0"/>
+            </font>
+        </Hyperlink>
+    </HBox>
+
+
+    <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0">
+        <Label fx:id="errorLabel" text="" textFill="#383838">
+            <font>
+                <Font name="HeadlandOne-Regular" size="12.0" />
+            </font>
+        </Label>
+    </HBox>
 </AnchorPane>
