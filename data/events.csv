@@ -1,0 +1,10 @@
+userID,Name,Description,Date Start,Date End,Time Start,Time end,Location,Type
+100002,Exam,Application Prog. Exam,10/23/2026,10/23/2026,15:00,16:00,UTSA,Event
+100003,Competition,N/A,10/24/2026,10/24/2026,8:00,14:00,Austin,Event
+100002,Order Groceries,N/A,10/25/2026,10/25/2026,LocalTime.MIN,LocalTime.MAX,N/A,Task
+100002,Gym,Cardio Day,10/26/2026,10/26/2026,18:00,19:00,Rec Center,Event
+100001,Meeting,Group project meeting,10/27/2026,10/27/2026,14:00,15:00,Zoom,Event
+100003,Presentation,N/A,10/28/2026,10/28/2026,15:00,15:30,UTSA,Event
+100003,Hackathon,RowdyCyberCon,11/7/2026,11/7/2026,9:00,18:00,UTSA,Event
+100001,Buy a gift,N/A,12/1/2026,12/1/2026,LocalTime.MIN,LocalTime.MAX,N/A,Task
+100001,Jane's Birthday Party,N/A,12/14/2026,12/14/2026,16:00,23:00,Jane's House,Event
