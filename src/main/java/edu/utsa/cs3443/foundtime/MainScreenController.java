@@ -1,29 +1,60 @@
 package edu.utsa.cs3443.foundtime;
 
+import edu.utsa.cs3443.foundtime.model.Event;
 import edu.utsa.cs3443.foundtime.model.EventManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+
+
+import java.util.*;
+import java.time.*;
 
 import javafx.event.ActionEvent;
+
 import java.io.IOException;
 
 public class MainScreenController {
     private EventManager eventManager;
+    //private GridPane calendarGrid;
+
     @FXML
-    private GridPane calendarGrid;
+    private GridPane calendarPane;
+
+    @FXML
     private Button weekButton;
+    @FXML
     private Button addEventButton;
+    @FXML
     private Button logOutButton;
+
+    @FXML
+    private Label monthLabel;
+    @FXML
+    private Label yearLabel;
+    ZonedDateTime dateTime;
+    ZonedDateTime today;
+
 
     //TODO
     public void initialize(){
-
+        dateTime = ZonedDateTime.now();
+        today = ZonedDateTime.now();
+        drawCalendar();
     }
 
     //TODO
@@ -54,6 +85,51 @@ public class MainScreenController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void drawCalendar(){
+        monthLabel.setText(String.valueOf(dateTime.getMonth()));
+        yearLabel.setText(String.valueOf(dateTime.getYear()));
+
+        double calendarWidth = calendarPane.getPrefWidth();
+        double calenderHeight = calendarPane.getPrefHeight();
+        double stroke = 1;
+        double heightSpace = 0;
+        double verticalSpace = 0;
+
+        calendarPane.getChildren().clear();
+        calendarPane.setStyle("-fx-background-color: black; -fx-padding: 1;");
+        calendarPane.setHgap(1);
+        calendarPane.setVgap(1);
+
+        int endOfMonth = dateTime.getMonth().maxLength();
+        int offset = ZonedDateTime.of(dateTime.getYear(), dateTime.getMonthValue(),
+                1,0,0,0,0,dateTime.getZone()).getDayOfWeek().getValue() % 7;
+
+
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < 7; j++){
+                StackPane pane = new StackPane();
+                pane.setStyle("-fx-background-color: #FFF8EF");
+
+                //adds date text for each box
+                int calcDate = (j+1)+(7*i);
+                if(calcDate > offset){
+                    int currDate = calcDate - offset;
+                    if (currDate <= endOfMonth){
+                        Text date = new Text(String.valueOf(currDate));
+                        StackPane.setAlignment(date, Pos.TOP_LEFT);
+                        StackPane.setMargin(date, new Insets(4,0,0,6));
+                        pane.getChildren().add(date);
+                   }
+//                    if(today.getYear() == dateTime.getYear() && today.getMonth() == dateTime.getMonth() && today.getDayOfMonth() == dateTime.getDayOfMonth()){
+//                        rectangle.setFill(Color.valueOf("FFB3D4"));
+//                    }
+                    calendarPane.add(pane,j,i);
+                }
+            }
+        }
+
     }
 
 }
