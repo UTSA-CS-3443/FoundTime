@@ -23,7 +23,8 @@ public class MainScreenController {
 
     //TODO
     public void initialize(){
-
+        eventManager = new EventManager();
+        eventManager.displayEvent();
     }
 
     //TODO

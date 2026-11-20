@@ -8,7 +8,45 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.utsa.cs3443.foundtime.DayScreenController"
+            fx:controller="edu.utsa.cs3443.foundtime.EventScreenController"
             prefHeight="400.0" prefWidth="600.0">
+
+    <StackPane fx:id="rootPane" AnchorPane.topAnchor="0.0"
+               AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0">
+        <!-- Layer 1: Main Application Screen -->
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="Main Window Content"/>
+            <Button text="Open Pop-Up Menu" onAction="#openPopup"/>
+        </VBox>
+
+        <!-- Layer 2: Draggable In-Window Pop-Up Menu -->
+        <VBox fx:id="popupMenu" visible="false" managed="false"
+              onMousePressed="#handleMousePressed"
+              onMouseDragged="#handleMouseDragged"
+              alignment="CENTER" spacing="10" maxWidth="220" maxHeight="160"
+              style="-fx-background-color: white; -fx-border-color: #888; -fx-padding: 15; -fx-cursor: move;">
+            <Label text="Drag Me" style="-fx-font-weight: bold;"/>
+            <CheckBox text="Enable Notifications"/>
+
+            <HBox alignment="CENTER" spacing="25.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
+                <TextField fx:id="username" prefWidth="200.0" />
+            </HBox>
+
+            <Button text="Close" onAction="#closePopup"/>
+        </VBox>
+    </StackPane>
+
+    <Button fx:id="optionsBtn" text="Left-Click Me" onAction="#showMenu">
+        <contextMenu>
+            <ContextMenu fx:id="myContextMenu">
+                <items>
+                    <MenuItem text="Edit" onAction="#handleEdit"/>
+                    <MenuItem text="Delete" onAction="#handleDelete"/>
+                </items>
+            </ContextMenu>
+        </contextMenu>
+    </Button>
 
 </AnchorPane>
