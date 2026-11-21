@@ -10,6 +10,7 @@ public class User {
     private String username;
     private String password;
     private int userID;
+    private static User currentUser;
 
     public User(String username, String password, int userID) {
         this.username = username;
@@ -37,6 +38,7 @@ public class User {
     private void setUserID(int userID) {
         this.userID = userID;
     }
+
 
     //Finds the user in the users.csv file.
     public static User authenticate(String username, String password){
@@ -168,6 +170,13 @@ public class User {
 
         return new User(data[0].trim(), data[1].trim(), Integer.parseInt(data[2].trim()));
     }
+
+    public static void setCurrentUser(User user){
+        if (user != null){
+            currentUser = user;
+        }
+    }
+    public static User getCurrentUser() {return currentUser; }
 
 
     //TODO: Some formatted string to display the users information

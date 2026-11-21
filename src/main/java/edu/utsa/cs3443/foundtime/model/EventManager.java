@@ -19,7 +19,7 @@ public class EventManager {
     }
 
     public void addEvent(Event event) throws IOException {
-        User currentUser = LoginController.currentUser;
+        User currentUser = User.getCurrentUser();
         if(currentUser == null){
             throw new IllegalStateException("User is not logged in");
         }
@@ -28,7 +28,7 @@ public class EventManager {
         saveAllEvents();
     }
     public boolean removeEvent(Event event){
-        User currentUser = LoginController.currentUser;
+        User currentUser = User.getCurrentUser();
         if(allEvents.contains(event) && event.getUserID() == currentUser.getUserID()){
             allEvents.remove(event);
             saveAllEvents();
@@ -39,7 +39,7 @@ public class EventManager {
     }
 
     public ArrayList<Event> getCurrentUserEvents(){
-        User currentUser = LoginController.currentUser;
+        User currentUser = User.getCurrentUser();
         ArrayList<Event> userEvents = new ArrayList<>();
 
         for(Event event : allEvents){
@@ -53,7 +53,7 @@ public class EventManager {
 
 
     public ArrayList<Event> getEventsByDate(LocalDate date){
-        User currentUser = LoginController.currentUser;
+        User currentUser = User.getCurrentUser();
         ArrayList<Event> list = new ArrayList<>();
         for(Event event : allEvents){
                if(event.getStartDate().equals(date) && event.getUserID()==currentUser.getUserID()){
