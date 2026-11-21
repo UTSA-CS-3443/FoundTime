@@ -86,6 +86,16 @@ public class Event {
 
     @Override
     public String toString() {
-        return "PLACEHOLDER";
+        return "Event{" +
+                "userID=" + userID +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", location='" + location + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

@@ -121,7 +121,7 @@ public class MainScreenController {
                         StackPane.setAlignment(date, Pos.TOP_LEFT);
                         StackPane.setMargin(date, new Insets(4,0,0,6));
                         pane.getChildren().add(date);
-                   }
+                    }
 //                    if(today.getYear() == dateTime.getYear() && today.getMonth() == dateTime.getMonth() && today.getDayOfMonth() == dateTime.getDayOfMonth()){
 //                        rectangle.setFill(Color.valueOf("FFB3D4"));
 //                    }
