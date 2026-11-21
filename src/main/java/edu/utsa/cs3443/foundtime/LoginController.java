@@ -68,6 +68,7 @@ public class LoginController {
     //TODO: This authenticates the users
     private boolean login(String username, String password){
         currentUser = User.authenticate(username, password);
+        User.setCurrentUser(currentUser);
         return currentUser != null;
     }
 
