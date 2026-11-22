@@ -45,13 +45,22 @@ public class MainScreenController {
     private Label showUsername;
 
     @FXML
+    private Button forwardMonthButton;
+
+    @FXML
+    private Button backMonthButton;
+
+    @FXML
+    private Label showUsername;
+
+    @FXML
     private Label monthLabel;
     @FXML
     private Label yearLabel;
     ZonedDateTime dateTime;
     ZonedDateTime today;
+    private Map<LocalDate, ArrayList<Event>> events;
     private User currentUser;
-    private Stage mainStage;
 
 
 
@@ -59,6 +68,7 @@ public class MainScreenController {
     public void initialize(){
         currentUser = User.getCurrentUser();
         eventManager = new EventManager();
+        events = new HashMap<>();
         dateTime = ZonedDateTime.now();
         today = ZonedDateTime.now();
         drawCalendar();
@@ -115,11 +125,11 @@ public class MainScreenController {
     }
 
     public void drawCalendar(){
-        calendarPane.getChildren().clear();
         showUsername.setText(currentUser.getUsername());
         monthLabel.setText(String.valueOf(dateTime.getMonth()));
         yearLabel.setText(String.valueOf(dateTime.getYear()));
 
+        calendarPane.getChildren().clear();
         calendarPane.setStyle("-fx-background-color: black; -fx-padding: 1;");
         calendarPane.setHgap(1);
         calendarPane.setVgap(1);
