@@ -165,6 +165,7 @@ public class EventScreenController {
 
 
     //Ignore this stuff, I was playing around with javaFX features. specifically stack panes
+
 //    // Matches fx:id="optionsBtn" in FXML (only needed if opening on left-click)
 //    @FXML
 //    private Button optionsBtn;
