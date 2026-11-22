@@ -1,11 +1,17 @@
 package edu.utsa.cs3443.foundtime;
 
 import edu.utsa.cs3443.foundtime.model.EventManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class WeekScreenController {
     private EventManager eventManager;
@@ -32,6 +38,20 @@ public class WeekScreenController {
     //TODO
     public void handleDayButton(ActionEvent event){
 
+    }
+
+    public void onBackButtonClick(ActionEvent actionEvent){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(CalendarApplication.class.getResource("layouts/main-screen.fxml"));
+            Parent newRoot = fxmlLoader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = stage.getScene();
+            scene.setRoot(newRoot);
+            stage.setTitle("FoundTime");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //TODO

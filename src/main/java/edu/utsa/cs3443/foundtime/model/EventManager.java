@@ -1,6 +1,6 @@
 package edu.utsa.cs3443.foundtime.model;
 
-import edu.utsa.cs3443.foundtime.LoginController;
+import javafx.scene.Node;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,7 +56,7 @@ public class EventManager {
         User currentUser = User.getCurrentUser();
         ArrayList<Event> list = new ArrayList<>();
         for(Event event : allEvents){
-               if(event.getStartDate().equals(date) && event.getUserID()==currentUser.getUserID()){
+               if(!date.isBefore(event.getStartDate()) && !date.isAfter(event.getEndDate()) && event.getUserID()==currentUser.getUserID()){
                     list.add(event);
                }
         }
@@ -70,6 +70,19 @@ public class EventManager {
         for(Event event : allEvents){
             System.out.println(event.toString());
         }
+    }
+
+    public String displayEventDetails(Event e){
+        return String.format("_________________\n" +
+                        "Event Details\n" +
+                        "____________________\n\n" +
+                        "Date: %s - %s\n"+
+                        "Time: %s - %s\n"+
+                        "Location: %s\n" +
+                        "Type: %s\n" +
+                        "Description: %s\n" +
+                        "_____________________\n",
+                e.getStartDate(), e.getEndDate(), e.getStartTime(), e.getEndTime(), e.getLocation(), e.getType(), e.getDescription());
     }
 
     //TODO: This is gonna save to the events file??
