@@ -12,7 +12,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
