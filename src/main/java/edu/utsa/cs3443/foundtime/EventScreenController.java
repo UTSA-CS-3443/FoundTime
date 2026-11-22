@@ -87,6 +87,11 @@ public class EventScreenController {
         timeComboBox2.visibleProperty().bind(allDayCheckBox.selectedProperty().not());
         timeComboBox2.managedProperty().bind(allDayCheckBox.selectedProperty().not());
 
+
+        allDayCheckBox.selectedProperty().addListener((observable, wasSelected, isNowSelected) -> {
+            timeComboBox.setDisable(isNowSelected);
+            timeComboBox2.setDisable(isNowSelected);
+        });
     }
 
     //TODO
@@ -105,14 +110,18 @@ public class EventScreenController {
         Location.setText(selectedEvent.getLocation());
         descriptionArea.setText(selectedEvent.getDescription());
 
+        boolean isAllDay = selectedEvent.isAllDayEvent();
+        allDayCheckBox.setSelected(isAllDay);
+        timeComboBox.setDisable(isAllDay);
+        timeComboBox2.setDisable(isAllDay);
     }
 
     //TODO
     public void handleSaveButton(ActionEvent event) throws IOException {
         // 1. Grab text inputs
         String title = titleLabel.getText();
-        String location = Location.getText();
-        String description = descriptionArea.getText();
+        String location = (Location.getText().isEmpty()) ? "N/A" : Location.getText();
+        String description = (descriptionArea.getText().isEmpty()) ? "N/A" : descriptionArea.getText();
 
         // 2. Grab dates, times, and checkbox
         LocalDate startDate = startDateIn.getValue();
@@ -129,9 +138,9 @@ public class EventScreenController {
 
         // 3. Edit existing event or add a new one via EventManager
         if (selectedEvent != null) {
-            eventManager.editEvent(selectedEvent, new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, ""));
+            eventManager.editEvent(selectedEvent, new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, "Event"));
         } else {
-            eventManager.addEvent(new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, ""));
+            eventManager.addEvent(new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, "Event"));
         }
 
         // 4. Close the window
