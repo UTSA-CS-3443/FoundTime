@@ -14,7 +14,7 @@
       <children>
          <AnchorPane prefHeight="31.0" prefWidth="298.0">
             <children>
-               <Button fx:id="backMonthButton" alignment="CENTER" layoutX="1.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #FFF8EF;" text="&lt;">
+               <Button fx:id="backMonthButton" alignment="CENTER" layoutX="1.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #FFF8EF;" text="&lt;" onAction="#clickBackMonthButton">
                   <font>
                      <Font name="System Bold" size="16.0" />
                   </font>
@@ -29,7 +29,7 @@
                      <Font size="24.0" />
                   </font>
                </Label>
-               <Button fx:id="forwardMonthButton" layoutX="262.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #FFF8EF;" text="&gt;">
+               <Button fx:id="forwardMonthButton" layoutX="262.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #FFF8EF;" text="&gt;" onAction="#clickForwardMonthButton">
                   <font>
                      <Font name="System Bold" size="16.0" />
                   </font>
@@ -38,9 +38,9 @@
          </AnchorPane>
       </children>
    </HBox>
-   <Button layoutX="39.0" layoutY="56.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="51.0" style="-fx-background-color: #FFF8EF;" text="+">
+   <Button layoutX="39.0" layoutY="56.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="51.0" textFill="#848484" style="-fx-background-color: #FFF8EF;" text="+" onAction="#handleAddEventButton">
       <font>
-         <Font size="26.0" />
+         <Font size="26.0"  />
       </font>
    </Button>
    <Label layoutX="40.0" layoutY="52.0" text="Add Event" textFill="#848484">

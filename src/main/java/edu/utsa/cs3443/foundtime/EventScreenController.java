@@ -23,6 +23,7 @@ import javafx.scene.control.DatePicker;
 
 public class EventScreenController {
     public CheckBox allDayCheckBox;
+    public Label editLabel;
     private EventManager eventManager;
     private Event selectedEvent;
 

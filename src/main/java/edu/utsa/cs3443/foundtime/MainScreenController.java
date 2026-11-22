@@ -217,6 +217,10 @@ public class MainScreenController {
             EventScreenController controller = fxmlLoader.getController();
             if (selectedEvent != null){
                 controller.setEventToEdit(selectedEvent);
+                controller.editLabel.setText("Edit Event");
+            }
+            else{
+                controller.editLabel.setText("Add Event");
             }
 
             controller.setEventManager(this.eventManager);
