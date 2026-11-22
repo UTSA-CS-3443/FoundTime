@@ -22,16 +22,17 @@ public class EventScreenController {
     private EventManager eventManager;
     private Event selectedEvent;
 
-    @FXML private TextField nameIn;
+    @FXML private TextField titleLabel;
     @FXML private DatePicker startDateIn;
     @FXML private DatePicker endDateIn;
     @FXML private TextField startTimeIn;
     @FXML private TextField endTimeIn;
-    @FXML private TextField locationIn;
-    @FXML private TextField descriptionIn;
+    @FXML private TextField Location;
+    @FXML private TextArea descriptionArea;
     @FXML private ChoiceBox<String> typeIn;
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
+    private Event eventToEdit;
 
     @FXML private ComboBox<LocalTime> timeComboBox;
     @FXML private ComboBox<LocalTime> timeComboBox2;
@@ -91,6 +92,14 @@ public class EventScreenController {
     //TODO
     public void setEventToEdit(Event selectedEvent){
         this.selectedEvent = selectedEvent;
+        titleLabel.setText(selectedEvent.getName());
+        startDateIn.setValue(selectedEvent.getStartDate());
+        endDateIn.setValue(selectedEvent.getEndDate());
+        timeComboBox.setValue(selectedEvent.getStartTime());
+        timeComboBox2.setValue(selectedEvent.getEndTime());
+        Location.setText(selectedEvent.getLocation());
+        descriptionArea.setText(selectedEvent.getDescription());
+
     }
 
     //TODO
@@ -181,5 +190,4 @@ public class EventScreenController {
         popupMenu.setTranslateX(clampedX);
         popupMenu.setTranslateY(clampedY);
     }
-
 }
