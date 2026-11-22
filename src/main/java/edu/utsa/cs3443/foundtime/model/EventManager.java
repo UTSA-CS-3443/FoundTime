@@ -3,6 +3,7 @@ package edu.utsa.cs3443.foundtime.model;
 import javafx.scene.Node;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,10 +13,11 @@ import java.util.Scanner;
 
 public class EventManager {
     private ArrayList<Event> allEvents = new ArrayList<>();
-    //private String eventsFilePath;
+    private String eventsFilePath;
 
     public EventManager() {
         loadEvents();
+        eventsFilePath = "data/events.csv";
     }
 
     public void addEvent(Event event) throws IOException {
@@ -27,6 +29,21 @@ public class EventManager {
         allEvents.add(event);
         saveAllEvents();
     }
+
+    public void editEvent(Event oldEvent, Event newEvent) throws IOException {
+        User currentUser = User.getCurrentUser();
+        if(currentUser == null){
+            throw new IllegalStateException("User is not logged in");
+        }
+
+        if(allEvents.contains(oldEvent) && oldEvent.getUserID() == currentUser.getUserID()){
+            int index = allEvents.indexOf(oldEvent);
+            allEvents.set(index, newEvent);
+        }
+
+        saveAllEvents();
+    }
+
     public boolean removeEvent(Event event){
         User currentUser = User.getCurrentUser();
         if(allEvents.contains(event) && event.getUserID() == currentUser.getUserID()){
@@ -87,10 +104,31 @@ public class EventManager {
 
     //TODO: This is gonna save to the events file??
     public void saveAllEvents(){
-        /*I actually don't know how this would work since we only grabbed the users
-          events, so we can't overwrite the current events file without the others events?
-        */
-        //Should call the eventToLine method
+        try{
+            FileWriter fileWriter = new FileWriter(eventsFilePath);
+            fileWriter.write("userID,Name,Description,Date Start,Date End,Time Start,Time end,Location,Type\n");
+            for (Event event : allEvents){
+                fileWriter.write(convertEventToLine(event) + "\n");
+            }
+            fileWriter.close();
+        }
+        catch (IOException e){
+            System.err.println("Details: " + e.getMessage());
+        }
+    }
+
+    private String convertEventToLine(Event event) {
+        //userID,Name,Description,Date Start,Date End,Time Start,Time end,Location,Type
+        DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("M/d/yyyy");
+        DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("H:mm");
+
+        String startDateText = (event.getStartDate() != null) ? event.getStartDate().format(DATE_FORMATTER) : "";
+        String endDateText = (event.getEndDate() != null) ? event.getEndDate().format(DATE_FORMATTER) : "";
+        String startTimeText = (event.getStartTime() != null) ? event.getStartTime().format(TIME_FORMATTER) : "LocalTime.MIN";
+        String endTimeText   = (event.getEndTime() != null)   ? event.getEndTime().format(TIME_FORMATTER)   : "LocalTime.MAX";
+
+        return event.getUserID() + "," + event.getName() + "," + event.getDescription() + "," + startDateText + "," + endDateText
+                + "," + startTimeText + "," + endTimeText + "," + event.getLocation() + "," + event.getType();
     }
 
     //TODO: Reads and grabs the users events from the events file

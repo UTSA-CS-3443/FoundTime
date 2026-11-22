@@ -219,6 +219,8 @@ public class MainScreenController {
                 controller.setEventToEdit(selectedEvent);
             }
 
+            controller.setEventManager(this.eventManager);
+
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(calendarPane.getScene().getWindow());
@@ -226,6 +228,8 @@ public class MainScreenController {
             stage.setTitle("FoundTime: Event Editor");
             stage.setScene(scene);
             stage.showAndWait();
+
+            drawCalendar();
 
         } catch (IOException e) {
             e.printStackTrace();
