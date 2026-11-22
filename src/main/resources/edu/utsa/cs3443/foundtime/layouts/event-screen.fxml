@@ -6,9 +6,133 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="edu.utsa.cs3443.foundtime.EventScreenController"
             prefHeight="400.0" prefWidth="600.0">
+    <padding>
+        <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+
+    <VBox alignment="CENTER" spacing="2.5" style="-fx-padding: 0 0 15 20;" stylesheets="@styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+        <Label fx:id="LogoLabel" text="FoundTime" textFill="#383838">
+            <font>
+                <Font name="HeadlandOne" size="40.0" />
+            </font>
+        </Label>
+        <Label fx:id="editLabel" text="Edit Event" textFill="#383838">
+            <font>
+                <Font name="HeadlandOne" size="24.0" />
+            </font>
+        </Label>
+    </VBox>
+
+
+    <HBox alignment="TOP_CENTER" spacing="5.0" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+        <VBox spacing="10.0" fillWidth="false" style="-fx-padding: 0 0 15 20;" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="120.0">
+            <VBox spacing="5.0">
+                <Label fx:id="Title" text="Title">
+                    <font>
+                        <Font name="HeadlandOne" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="titleLabel" promptText="Add title" prefWidth="200.0" />
+            </VBox>
+
+            <VBox spacing="5.0">
+                <Label fx:id="locLabel" text="Location">
+                    <font>
+                        <Font name="HeadlandOne" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="Location" promptText="Add location" prefWidth="200.0" />
+            </VBox>
+
+
+            <VBox spacing="5.0">
+                <Label fx:id="descLabel" text="Description">
+                    <font>
+                        <Font name="HeadlandOne" size="12.0" />
+                    </font>
+                </Label>
+                <TextArea fx:id="descriptionArea"
+                          promptText="Add description"
+                          wrapText="true"
+                          prefRowCount="3"
+                          prefColumnCount="15"
+                          styleClass="custom-text-area" />
+            </VBox>
+        </VBox>
+
+        <VBox spacing="10.0" fillWidth="false" style="-fx-padding: 0 0 15 20;" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="10.0">
+            <VBox spacing="5.0">
+                <VBox spacing="5.0">
+                    <Label fx:id="StartDate" text="Date">
+                        <font>
+                            <Font name="HeadlandOne" size="12.0" />
+                        </font>
+                    </Label>
+                </VBox>
+
+                <HBox spacing="10.0">
+                    <DatePicker fx:id="startDateIn" promptText="Select a date"/>
+                    <ComboBox fx:id="timeComboBox" promptText="Select time"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="5.0">
+                <VBox>
+                    <Label fx:id="EndDate" text="to">
+                        <font>
+                            <Font name="HeadlandOne" size="12.0" />
+                        </font>
+                    </Label>
+                </VBox>
+
+                <HBox spacing="10.0">
+                    <DatePicker fx:id="endDateIn" promptText="Select a date"/>
+                    <ComboBox fx:id="timeComboBox2" promptText="Select time"/>
+                </HBox>
+            </VBox>
+
+            <CheckBox fx:id="allDayCheckBox" text="All day"/>
+
+        </VBox>
+    </HBox>
+
+
+    <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="330.0">
+        <Button fx:id="saveButton" text="Save" prefWidth="120.0" prefHeight="30.0" onAction="#handleSaveButton">
+            <font>
+                <Font name="HeadlandOne" size="12.5" />
+            </font>
+        </Button>
+    </HBox>
+
+    <HBox alignment="TOP_RIGHT" spacing="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
+        <Button fx:id="cancelButton" text="Cancel" onAction="#handleCancelButton">
+            <font>
+                <Font name="HeadlandOne" size="12.5" />
+            </font>
+        </Button>
+
+        <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteButton">
+            <font>
+                <Font name="HeadlandOne" size="12.5" />
+            </font>
+
+            <graphic>
+                <ImageView fitWidth="12.5" fitHeight="12.5" preserveRatio="true">
+                    <image>
+                        <Image url="@images/deleteImage.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
 
 </AnchorPane>
