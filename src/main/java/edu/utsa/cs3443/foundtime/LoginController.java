@@ -38,7 +38,7 @@ public class LoginController {
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = stage.getScene();
                 scene.setRoot(newRoot);
-                stage.setTitle("FindTime: Sign Up");
+                stage.setTitle("FoundTime");
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -58,7 +58,7 @@ public class LoginController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = stage.getScene();
             scene.setRoot(newRoot);
-            stage.setTitle("FindTime: Sign Up");
+            stage.setTitle("FindTime");
 
         } catch (IOException e) {
             e.printStackTrace();

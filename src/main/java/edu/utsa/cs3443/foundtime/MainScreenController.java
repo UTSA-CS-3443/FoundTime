@@ -10,18 +10,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
 
+import java.net.URL;
 import java.util.*;
 import java.time.*;
 
@@ -57,7 +54,6 @@ public class MainScreenController {
     private Label yearLabel;
     ZonedDateTime dateTime;
     ZonedDateTime today;
-    private Map<LocalDate, ArrayList<Event>> events;
     private User currentUser;
 
 
@@ -66,7 +62,6 @@ public class MainScreenController {
     public void initialize(){
         currentUser = User.getCurrentUser();
         eventManager = new EventManager();
-        events = new HashMap<>();
         dateTime = ZonedDateTime.now();
         today = ZonedDateTime.now();
         drawCalendar();
@@ -125,22 +120,62 @@ public class MainScreenController {
 
                 //adds date text for each box
                 int calcDate = (j+1)+(7*i);
-                if(calcDate > offset){
-                    int currDate = calcDate - offset;
-                    if (currDate <= endOfMonth){
-                        Text date = new Text(String.valueOf(currDate));
-                        StackPane.setAlignment(date, Pos.TOP_LEFT);
-                        StackPane.setMargin(date, new Insets(4,0,0,6));
-                        pane.getChildren().add(date);
+                int currDate = calcDate - offset;
+
+                if (currDate >= 1 && currDate <= endOfMonth){
+                    LocalDate date = LocalDate.of(dateTime.getYear(),dateTime.getMonthValue(),currDate);
+
+                    VBox event = new VBox(2);
+                    event.setPadding(new Insets(4,4,4,6));
+                    event.setAlignment(Pos.TOP_LEFT);
+
+                    Text day = new Text(String.valueOf(currDate));
+                    event.getChildren().add(day);
+
+                    List<Event> userEvents = eventManager.getEventsByDate(date);
+                    System.out.println(date + " -> " + userEvents.size() + " events");
+
+                    for (Event e : userEvents){
+                                Label eventLabel = new Label(e.getName());
+                                eventLabel.setMaxWidth(Double.MAX_VALUE);
+                                eventLabel.setPadding(new Insets(1, 4, 1, 4));
+                                eventLabel.setStyle("-fx-background-color: #FFB3D4; -fx-background-radius: 3;");
+                                eventLabel.setOnMouseClicked(mouseEvent -> showEvent(e));
+                                event.getChildren().add(eventLabel);
                     }
+                    pane.getChildren().add(event);
+                }
+
 //                    if(today.getYear() == dateTime.getYear() && today.getMonth() == dateTime.getMonth() && today.getDayOfMonth() == dateTime.getDayOfMonth()){
 //                        rectangle.setFill(Color.valueOf("FFB3D4"));
 //                    }
                     calendarPane.add(pane,j,i);
-                }
+
             }
         }
 
     }
+
+    private void showEvent(Event e){
+        Alert event = new Alert(Alert.AlertType.INFORMATION);
+        DialogPane pane = event.getDialogPane();
+        pane.setStyle("-fx-background-color: #FFF8EF");
+        event.setGraphic(null);
+
+        Node header = pane.lookup(".header-panel");
+        if (header != null) {header.setStyle("-fx-background-color: #FFB3D4");}
+
+        ButtonType editButton = new ButtonType("Edit", ButtonBar.ButtonData.OTHER);
+
+        event.setTitle("Event Details");
+        event.setHeaderText(e.getName());
+        event.setContentText(eventManager.displayEventDetails(e));
+
+        ButtonType editEvent = new ButtonType("Edit Event", ButtonBar.ButtonData.OTHER);
+        event.getButtonTypes().setAll(editEvent, ButtonType.CLOSE);
+
+        event.showAndWait();
+    }
+
 
 }
