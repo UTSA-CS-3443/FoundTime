@@ -106,7 +106,7 @@
 
 
     <HBox AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
-        <Button fx:id="cancelButton" text="Cancel" onAction="#showMenu">
+        <Button fx:id="cancelButton" text="Cancel" onAction="#handleCancelButton">
             <font>
                 <Font name="HeadlandOne" size="12.5" />
             </font>
@@ -114,7 +114,7 @@
     </HBox>
 
     <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="330.0">
-        <Button fx:id="saveButton" text="Save" prefWidth="120.0" prefHeight="30.0" onAction="#showMenu">
+        <Button fx:id="saveButton" text="Save" prefWidth="120.0" prefHeight="30.0" onAction="#handleSaveButton">
             <font>
                 <Font name="HeadlandOne" size="12.5" />
             </font>
@@ -122,7 +122,7 @@
     </HBox>
 
     <HBox alignment="TOP_RIGHT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="35.0">
-        <Button fx:id="deleteButton" text="Delete" onAction="#showMenu">
+        <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteButton">
             <font>
                 <Font name="HeadlandOne" size="12.5" />
             </font>
