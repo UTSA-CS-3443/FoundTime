@@ -5,12 +5,16 @@ import edu.utsa.cs3443.foundtime.model.EventManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ComboBox;
@@ -103,18 +107,50 @@ public class EventScreenController {
     }
 
     //TODO
-    public void handleSaveButton(ActionEvent event){
+    public void handleSaveButton(ActionEvent event) throws IOException {
+        // 1. Grab text inputs
+        String title = titleLabel.getText();
+        String location = Location.getText();
+        String description = descriptionArea.getText();
 
+        // 2. Grab dates, times, and checkbox
+        LocalDate startDate = startDateIn.getValue();
+        LocalDate endDate = (endDateIn.getValue() != null) ? endDateIn.getValue() : startDate;
+        boolean isAllDay = allDayCheckBox.isSelected();
+
+        // Use midnight/end-of-day if "All day" is checked, otherwise grab the ComboBox times
+        LocalTime startTime = isAllDay ? LocalTime.MIDNIGHT : timeComboBox.getValue();
+        LocalTime endTime = isAllDay ? LocalTime.of(23, 59) : timeComboBox2.getValue();
+
+        // (Optional) Combine into LocalDateTime if your Event / EventManager uses LocalDateTime:
+        // LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+        // LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+
+        // 3. Edit existing event or add a new one via EventManager
+        if (selectedEvent != null) {
+            eventManager.editEvent(selectedEvent, new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, ""));
+        } else {
+            eventManager.addEvent(new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, ""));
+        }
+
+        // 4. Close the window
+        Stage stage = (Stage) titleLabel.getScene().getWindow();
+        stage.close();
     }
 
     //TODO
     public void handleCancelButton(ActionEvent event){
-
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     //TODO
     public void handleDeleteButton(ActionEvent event){
+        eventManager.removeEvent(selectedEvent);
 
+        Stage stage = (Stage) titleLabel.getScene().getWindow();
+        stage.close();
     }
 
 
