@@ -24,6 +24,7 @@ import java.util.*;
 import java.time.*;
 
 import javafx.event.ActionEvent;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -49,9 +50,6 @@ public class MainScreenController {
 
     @FXML
     private Button backMonthButton;
-
-    @FXML
-    private Label showUsername;
 
     @FXML
     private Label monthLabel;
@@ -223,7 +221,7 @@ public class MainScreenController {
 
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(this.mainStage);
+            stage.initOwner(calendarPane.getScene().getWindow());
 
             stage.setTitle("FoundTime: Event Editor");
             stage.setScene(scene);

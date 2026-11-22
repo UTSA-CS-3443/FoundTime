@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFF8EF;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.foundtime.SignupController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFF8EF;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.utsa.cs3443.foundtime.SignupController">
     <padding>
         <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
     </padding>
