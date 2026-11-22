@@ -81,7 +81,13 @@ public class Event {
     }
 
     public boolean isAllDayEvent(){
-        return this.startDate == this.endDate;
+        if(startDate.isEqual(LocalDate.MIN) && endDate.isEqual(LocalDate.MAX)){
+            return true;
+        }
+        else if(startTime.equals(LocalTime.of(0, 0)) && endTime.equals(LocalTime.of(23, 59))){
+            return true;
+        }
+        return false;
     }
 
     @Override
