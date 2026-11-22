@@ -118,32 +118,23 @@ public class EventScreenController {
 
     //TODO
     public void handleSaveButton(ActionEvent event) throws IOException {
-        // 1. Grab text inputs
         String title = titleLabel.getText();
         String location = (Location.getText().isEmpty()) ? "N/A" : Location.getText();
         String description = (descriptionArea.getText().isEmpty()) ? "N/A" : descriptionArea.getText();
 
-        // 2. Grab dates, times, and checkbox
         LocalDate startDate = startDateIn.getValue();
         LocalDate endDate = (endDateIn.getValue() != null) ? endDateIn.getValue() : startDate;
         boolean isAllDay = allDayCheckBox.isSelected();
 
-        // Use midnight/end-of-day if "All day" is checked, otherwise grab the ComboBox times
         LocalTime startTime = isAllDay ? LocalTime.MIDNIGHT : timeComboBox.getValue();
         LocalTime endTime = isAllDay ? LocalTime.of(23, 59) : timeComboBox2.getValue();
 
-        // (Optional) Combine into LocalDateTime if your Event / EventManager uses LocalDateTime:
-        // LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
-        // LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
-
-        // 3. Edit existing event or add a new one via EventManager
         if (selectedEvent != null) {
             eventManager.editEvent(selectedEvent, new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, "Event"));
         } else {
             eventManager.addEvent(new Event(LoginController.currentUser.getUserID(), title, description, startDate, endDate, startTime, endTime, location, "Event"));
         }
 
-        // 4. Close the window
         Stage stage = (Stage) titleLabel.getScene().getWindow();
         stage.close();
     }
