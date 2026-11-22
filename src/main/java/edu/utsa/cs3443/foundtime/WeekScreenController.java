@@ -33,11 +33,32 @@ public class WeekScreenController {
 
     //TODO
     public void handleMonthButton(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(CalendarApplication.class.getResource("layouts/main-screen.fxml"));
+            Parent newRoot = fxmlLoader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = stage.getScene();
+            scene.setRoot(newRoot);
+            stage.setTitle("FoundTime: Month View");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //TODO
     public void handleDayButton(ActionEvent event){
-
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(CalendarApplication.class.getResource("layouts/day-screen.fxml"));
+//            Parent newRoot = fxmlLoader.load();
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            Scene scene = stage.getScene();
+//            scene.setRoot(newRoot);
+//            stage.setTitle("FoundTime: Day View");
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void onBackButtonClick(ActionEvent actionEvent){
@@ -61,6 +82,14 @@ public class WeekScreenController {
 
     //TODO
     public void handleLogOutButton(ActionEvent event){
+
+    }
+
+    public void handleBackButton(ActionEvent actionEvent) {
+
+    }
+
+    public void handleForwardButton(ActionEvent actionEvent) {
 
     }
 }
